@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Exam Report</title>
+    <style>
+        body {
+            background-image: url("Image.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: inherit;
+        }
+
+        .form-group{
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            width: 20%;
+        }
+
+        #button{
+            font-weight: bold;
+            color: white;
+            background-color: chocolate;
+            border-color: chocolate;
+            border-radius: 10px; 
+        }
+    </style>
+</head>
+
+<body>
+    <form action="Mark List.html" method="POST" name="form" onsubmit="return validateForm()">
+        <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td colspan="2">
+                    <table align="right" width="62%" cellpadding="0" cellspacing="0" border="0" style="padding: 150px 0px 150px 0px;">
+                        <tr>
+                            <td align="right" width="20%" style="padding: 15px 15px; font-size: 18px; font-family: proxima_nova_rgregular, sans-serif; font-weight: bold; color: gold;">Full
+                                Name:</td>
+                            <td width="30%" style="padding: 15px 0px;"><input type="text" id="Input" placeholder="Fullname"
+                                    maxlength="15" required style="padding: 5px 0px; width: 200px;"></td>
+                        </tr>
+                        <tr>
+                            <td align="right" width="20%" style="padding: 15px 15px; font-size: 18px; font-family: proxima_nova_rgregular, sans-serif; font-weight: bold; color: gold;">Roll
+                                Number:</td>
+                            <td width="30%" style="padding: 15px 0px;"><input type="text" id="rname" placeholder="RollNo"
+                                    required style="padding: 5px 0px; width: 200px;"></td>
+                        </tr>
+                        <tr>
+                            <td align="right" width="25%" style="padding: 15px 0px; font-size: 18px; font-family: proxima_nova_rgregular, sans-serif; font-weight: bold; color: gold;">Subject
+                                and Marks: </td>
+
+                            <td width="25%">
+                                <!--<table id="mytable" style="padding-top: 20px; padding-bottom: 20px;">
+                                    <tr>
+                                        <td><input type="text" id="sname" name="sname" placeholder="Subject" style="padding: 5px 0px;"></td>
+                                        <td><input type="number" id="mname" class="mname" name="mname" placeholder="Marks" style="padding: 5px 0px;"></td>
+                                        <td><button id="buo" type="button" onclick="myFunction()">Add</button></td>
+                                        <td><button type="button" id="btnresult" onclick="result();">Result</button></td>
+                                    </tr>
+                                </table>-->
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <table id="mytable">
+                                                <tr>
+                                                    <td><input type="text" id="sname" name="sname" placeholder="Subject"
+                                                            required style="padding: 5px 0px;"><button id="buo" type="button">Add</button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table id="mytable1">
+                                                <tr>
+                                                    <td><input type="number" id="mname" class="mname" name="mname"
+                                                            required placeholder="Marks" min="0" max="100" style="padding: 5px 0px;"><button
+                                                            id="buo1" type="button">Add</button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2" style="padding: 15px 0px; "><input type="submit" value="Submit"
+                                    id="button" style="padding: 5px 10px; "></td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+    <script>
+
+        /*function myFunction() {
+            var button = document.querySelector('#buo');
+            var table = document.querySelector('#mytable');
+
+            var snameInput = document.querySelector('#sname');
+            var mnameInput = document.querySelector('#mname');
+
+            button.addEventListener('click', () => {
+                var sname = snameInput.value;
+                var mname = mnameInput.value;
+                var template = `
+                            <tr>
+                                <td>${sname} <button onclick="deleteRow(this)">Remove</button> </td>
+                                <td class="mname">${mname}</td>
+                            </tr>`;
+                table.innerHTML += template;
+            });
+        }
+
+        function deleteRow(r) {
+            var i = r.parentNode.parentNode.rowIndex;
+            document.getElementById("mytable").deleteRow(i);
+        }*/
+
+        /*Subject*/
+        var buo = document.querySelector("#buo");
+        buo.onclick = function () {
+            var table = document.createElement("table");
+            table.innerHTML = generateit();
+            document.getElementById("mytable").appendChild(table);
+        }
+
+        function generateit() {
+            return "<input type='text'><button onclick='removeit(this)'>Remove</button>";
+        }
+
+        function removeit(table) {
+            document.getElementById("mytable").removeChild(table.parentNode);
+        }
+
+        /*Marks*/
+        var buo1 = document.querySelector("#buo1");
+        buo1.onclick = function () {
+            var table = document.createElement("table");
+            table.innerHTML = genrateit();
+            document.getElementById("mytable1").appendChild(table);
+        }
+
+        function genrateit() {
+            return "<input type='number' class='mname'><button onclick='remit(this)'>Remove</button>";
+        }
+
+        function remit(table) {
+            document.getElementById("mytable1").removeChild(table.parentNode);
+        }
+
+    </script>
+
+</body>
+</html>

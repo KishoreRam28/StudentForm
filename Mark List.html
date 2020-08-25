@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Mark List</title>
+    <style>
+        body {
+            background-image: url('Image1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 620px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#" method="POST" name="form">
+        <center>
+            <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px; padding: 20px 10px; background: #fde9a0; filter: brightness(85%); ">
+                <tr>
+                    <td align="center" style="padding: 15px 0px;">School/College Name: <input type="text" id="cname"
+                            placeholder="School/College" required></td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 15px 0px;">Board/University Name: <input type="text" id="bname"
+                            placeholder="Board/University" required></td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 15px 0px;">Academic Year: <input type="month" id="aname"
+                            maxlength="4" required></td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 15px 0px;">Class Name: <input type="text" id="ccname"
+                            placeholder="Class" required></td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="2" style="padding: 5px 0px;">Subject and Marks:
+                        <table>
+                            <tr>
+
+                                <td align="center">
+                                    <table id="mytable">
+                                        <tr>
+                                            <td><input type="text" id="sname" name="sname" placeholder="Subject"
+                                                    required style="padding: 5px 0px;"><button id="buo" type="button">Add</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table id="mytable1">
+                                        <tr>
+                                            <td><input type="number" id="mname" class="mname" name="mname" required
+                                                    placeholder="Marks" style="padding: 5px 0px;"><button id="buo1"
+                                                    type="button">Add</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 10px 0px;">Total Marks Obtained: <button type="button" id="btnresult"
+                            onclick="result();">Result</button></td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 10px 0px;">Maximum Marks: <button type="button" id="btnresult1"
+                            onclick="maxit();">Result</button></td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 10px 0px;">Percentage: <button type="button" id="btnresult2"
+                            onclick="perit();">Result</button></td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 10px 0px;">Grade: <button type="button" id="btnresult3"
+                            onclick="gradeit();">Result</button></td>
+                </tr>
+            </table>
+        </center>
+    </form>
+
+    <script>
+
+        /*Subject*/
+        var buo = document.querySelector("#buo");
+        buo.onclick = function () {
+            var table = document.createElement("table");
+            table.innerHTML = generateit();
+            document.getElementById("mytable").appendChild(table);
+        }
+
+        function generateit() {
+            return "<input type='text'><button onclick='removeit(this)'>Remove</button>";
+        }
+
+        function removeit(table) {
+            document.getElementById("mytable").removeChild(table.parentNode);
+        }
+
+        /*Marks*/
+        var buo1 = document.querySelector("#buo1");
+        buo1.onclick = function () {
+            var table = document.createElement("table");
+            table.innerHTML = genrateit();
+            document.getElementById("mytable1").appendChild(table);
+        }
+
+        function genrateit() {
+            return "<input type='number' class='mname'><button onclick='remit(this)'>Remove</button>";
+        }
+
+        function remit(table) {
+            document.getElementById("mytable1").removeChild(table.parentNode);
+        }
+        
+        /*Total Mark*/
+        function result() {
+            var res = document.querySelector("#btnresult");
+            res.onclick = function () {
+                var x = document.querySelectorAll(".mname");
+                var tot = 0;
+                for (i = 0; i < x.length; i++) {
+                    tot = tot + Number(x[i].value);
+                }
+                alert(tot);
+                //alert(x.length);
+            }
+        }
+
+        /*Maximum Mark*/
+        function maxit() {
+            var res = document.querySelector("#btnresult1");
+            res.onclick = function () {
+                var x = document.querySelectorAll(".mname");
+                var k = 0;
+                for (i = 0; i < x.length; i++) {
+                    var j = Number(x[i].value);
+                    if (j > k) {
+                        k = j;
+                    }
+                }
+                alert(k);
+            }
+        }
+
+        /*Percentage*/
+        function perit() {
+            var res = document.querySelector("#btnresult2");
+            res.onclick = function () {
+                var x = document.querySelectorAll(".mname");
+                var tot = 0;
+                for (i = 0; i < x.length; i++) {
+                    tot = tot + Number(x[i].value);
+                }
+                var per = (tot/x.length*100)*100;
+                alert(per/10000 + "%");
+            }
+        }
+
+        /*Grade*/
+        function gradeit() {
+            var res = document.querySelector("#btnresult3");
+            res.onclick = function () {
+                var x = document.querySelectorAll(".mname");
+                var tot = 0;
+                for (i = 0; i < x.length; i++) {
+                    tot = tot + Number(x[i].value);
+                }
+                var per = (tot/x.length*100)*100;
+
+                if(per < 350000)
+                {
+                    alert("Fail");
+                }
+
+                else if((per > 350000) && (per < 600000))
+                {
+                    alert("Pass");
+                }
+
+                else if((per > 600000) && (per < 750000))
+                {
+                    alert("Pass with First Class");
+                }
+
+                else
+                {
+                    alert("Pass with Distinction");
+                }
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+
+<!--window.addEventListener('load', () => {
+    const params = (new URL(document.location)).searchParams;
+    const sname = params.get('sname');
+    const mname = params.get('mname');
+
+    document.getElementById('sub').innerHTML = sname;
+    document.getElementById('mar').innerHTML = mname;
+})-->
